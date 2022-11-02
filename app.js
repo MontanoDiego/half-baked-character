@@ -26,6 +26,7 @@ headDropdown.addEventListener('change', (e) => {
     // update the dom for the head (use style.backgroundImage on the headEl div instead of trying to set the .src -- it's NOT an img tag!)
     headEl.style.backgroundImage = `url('./assets/${value}-head.png')`;
     // update the stats to show the new count (call displayStats() to do this work)
+    displayStats();
 });
 
 
@@ -37,6 +38,7 @@ middleDropdown.addEventListener('change', (e) => {
     // update the dom for the middle (NOTE: use style.backgroundImage on the middleEl div instead of trying to set the .src -- it's NOT an img tag!)
     middleEl.style.backgroundImage = `url('./assets/${value}-middle.png')`;
     // update the stats to show the new count (call displayStats() to do this work)
+    displayStats();
 });
 
 
@@ -48,6 +50,7 @@ bottomDropdown.addEventListener('change', (e) => {
     // update the dom for the bottom (NOTE use style.backgroundImage on the bottomEl div instead of trying to set the .src -- it's NOT an img tag!)
     bottomEl.style.backgroundImage = `url('./assets/${value}-pants.png')`;
     // update the stats to show the new count (call displayStats() to do this work)
+    displayStats();
 });
 
 catchphraseButton.addEventListener('click', () => {
@@ -58,21 +61,27 @@ catchphraseButton.addEventListener('click', () => {
     // clear out the form input's value so it's empty to the user
     catchphraseInput.value = '';
     // update the dom to show the new catchphrases (refactor to/call displayCatchphrases to do this work)
-    
+    displayCatchphrases();
 });
 
 function displayStats() {
     // text content of the reportEl to tell the user how many times they've changed each piece of the state
+    reportEl.textContent = `Changed heads ${headCounter} times, changed bodies ${middleCounter} times, and changed pants ${bottomCounter} times.`;
 }
 
 function displayCatchphrases() {
     // clear out the DOM for the currently displayed catchphrases
-
+    catchphrases.textContent = '';
     // loop through each catchphrase in state
-
+    for (let catchphrase of catchphrases) {
+        const p = document.createElement('p');
+        p.textContent = catchphrase;
+        catchphrases.append(p);
+    }
     // and for each catchphrase
     
     // create an HTML element with the catchphrase as its text content
     
     // and append that HTML element to the cleared-out DOM
+
 }
